@@ -1,0 +1,464 @@
+<!-- filepath: d:\MINI PROJECT\contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Food Saver</title>
+
+  <!-- Bootstrap + Fonts + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #fff8f2 0%, #ffe6d6 100%);
+      position: relative;
+    }
+    /* Decorative background circles */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 127, 80, 0.1);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    body::before {
+      top: -100px;
+      left: -100px;
+    }
+    body::after {
+      bottom: -120px;
+      right: -120px;
+    }
+
+    /* Navbar */
+    nav.navbar {
+      background: linear-gradient(90deg, #ff7f50, #ff6347);
+    }
+    nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+    nav .nav-link:hover {
+      color: #ffe5d9 !important;
+    }
+
+    /* Header */
+    .contact-header {
+      padding: 100px 20px 50px;
+      text-align: center;
+    }
+    .contact-header h2 {
+      color: #ff6347;
+      font-weight: 700;
+      font-size: 45px;
+      animation: fadeDown 1s ease-in-out;
+    }
+    .contact-header p {
+      color: #555;
+      max-width: 800px;
+      margin: auto;
+      font-size: 18px;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    /* Info Cards */
+    .contact-info {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .contact-info:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(255,99,71,0.2);
+    }
+    .contact-info i {
+      font-size: 40px;
+      color: #ff6347;
+      margin-bottom: 12px;
+      transition: transform 0.4s ease;
+    }
+    .contact-info:hover i {
+      transform: rotate(10deg) scale(1.2);
+      color: #ff4500;
+    }
+
+    /* Form */
+    .contact-form {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      animation: fadeUp 1.3s ease-in-out;
+    }
+    .form-control {
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .btn-submit {
+      background: #ff7f50;
+      color: white;
+      border-radius: 30px;
+      padding: 12px 30px;
+      border: none;
+      font-size: 18px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px rgba(255,99,71,0.5);
+    }
+    .btn-submit:hover {
+      background: #ff4500;
+      box-shadow: 0 0 20px rgba(255,99,71,1);
+      transform: scale(1.08);
+    }
+
+    /* Map */
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      margin-top: 30px;
+      position: relative;
+    }
+    .map-pin-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: #ff6347;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-size: 26px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      outline: none;
+    }
+    .map-pin-btn:hover {
+      background: #ff4500;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #ff7f50, #ff6347);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 50px; /* pushed down */
+    }
+    footer .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #ffd700;
+    }
+
+    /* Voice Input Styles */
+    .voice-input-container {
+      position: relative;
+    }
+    .voice-btn {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff6347;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: none;
+      z-index: 10;
+      font-size: 12px;
+    }
+    .voice-btn.active {
+      background: #ff0000;
+      animation: pulse 1s infinite;
+    }
+    .voice-btn.textarea {
+      top: 40px;
+    }
+    .form-control {
+      padding-right: 50px !important;
+    }
+    .readback-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    @keyframes pulse {
+      0% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-50%) scale(1.1); }
+      100% { transform: translateY(-50%) scale(1); }
+    }
+    /* Animations */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f55c3d;">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FOOD SAVER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.html">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="registerngo.html">REGISTER NGO</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="contact-header">
+  <h2>Contact Us</h2>
+  <p>We’d love to hear from you! Whether you have a question, want to volunteer, or make a donation, reach out and we’ll respond as soon as possible.</p>
+</div>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Info Cards -->
+      <div class="col-md-4">
+        <div class="contact-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <h5>Address</h5>
+          <p>Annadanapatti S.O, Salem, Tamil Nadu - 636002</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-envelope"></i>
+          <h5>Email</h5>
+          <p>support@foodsaver.org</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-phone"></i>
+          <h5>Phone</h5>
+          <p>+91 9342512455</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-md-8">
+        <div class="contact-form">
+          <form action="#" method="POST">
+            <div class="mb-3 voice-input-container">
+              <label class="form-label">Your Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+              <button type="button" class="voice-btn" data-field="name"><i class="fas fa-microphone"></i></button>
+            </div>
+            <div class="mb-3 voice-input-container">
+              <label class="form-label">Your Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+              <button type="button" class="voice-btn" data-field="email"><i class="fas fa-microphone"></i></button>
+            </div>
+            <div class="mb-3 voice-input-container">
+              <label class="form-label">Your Message</label>
+              <textarea id="message" class="form-control" rows="5" placeholder="Type your message" required></textarea>
+              <button type="button" class="voice-btn textarea" data-field="message"><i class="fas fa-microphone"></i></button>
+            </div>
+            <button type="button" class="readback-btn" onclick="readbackForm()"><i class="fas fa-volume-up"></i> Read Back</button>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map with Pin & Directions Link -->
+    <!-- Inside your existing page, replace only the map and footer part as below -->
+
+<!-- Google Map with Pin and Directions Link -->
+<!-- ...existing code... -->
+<!-- Google Map with Pin and Directions Link -->
+<div class="map-container mt-5">
+  <a
+    href="https://www.google.com/maps/dir/?api=1&destination=11.6360284,78.1421194"
+    target="_blank"
+    style="display: block;"
+  >
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.24579812393!2d78.123705!3d11.6360284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefdbcd237405%3A0xee212e3769511439!2sAnnadhanapatti%2C%20Tamil%20Nadu%20636010!5e0!3m2!1sen!2sin!4v1692300000000!5m2!1sen!2sin"
+      width="100%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="fast"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </a>
+</div>
+
+<!-- Footer (remove margin-top inline style) -->
+<footer>
+  <div class="container">
+    <div class="social-icons mb-3">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>© 2025 Food Saver | All Rights Reserved</p>
+  </div>
+</footer>
+<!-- ...existing code... -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+let recognition;
+let currentField = null;
+const fields = ['name', 'email', 'message'];
+
+if ('webkitSpeechRecognition' in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+}
+
+// Show voice button on focus and auto start voice
+fields.forEach(fieldId => {
+  const field = document.getElementById(fieldId);
+  const voiceBtn = document.querySelector(`[data-field="${fieldId}"]`);
+  
+  field.addEventListener('focus', () => {
+    voiceBtn.style.display = 'block';
+    if (field.value === '') {
+      setTimeout(() => startVoiceInput(fieldId, voiceBtn), 500);
+    }
+  });
+  
+  field.addEventListener('blur', () => {
+    setTimeout(() => {
+      if (!voiceBtn.classList.contains('active')) {
+        voiceBtn.style.display = 'none';
+      }
+    }, 200);
+  });
+  
+  // Stop voice input and hide button when typing
+  field.addEventListener('input', () => {
+    if (recognition && voiceBtn.classList.contains('active')) {
+      recognition.stop();
+      voiceBtn.classList.remove('active');
+    }
+    voiceBtn.style.display = 'none';
+  });
+});
+
+// Voice button click handlers
+document.querySelectorAll('.voice-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const fieldId = btn.dataset.field;
+    if (btn.classList.contains('active')) {
+      recognition.stop();
+      btn.classList.remove('active');
+    } else {
+      startVoiceInput(fieldId, btn);
+    }
+  });
+});
+
+function startVoiceInput(fieldId, btn) {
+  if (!recognition) {
+    alert('Speech recognition not supported');
+    return;
+  }
+  
+  currentField = fieldId;
+  btn.classList.add('active');
+  
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById(fieldId).value = transcript;
+    btn.classList.remove('active');
+    moveToNextField(fieldId);
+  };
+  
+  recognition.onerror = () => {
+    btn.classList.remove('active');
+  };
+  
+  recognition.onend = () => {
+    btn.classList.remove('active');
+  };
+  
+  recognition.start();
+}
+
+function moveToNextField(currentFieldId) {
+  const currentIndex = fields.indexOf(currentFieldId);
+  if (currentIndex < fields.length - 1) {
+    const nextField = document.getElementById(fields[currentIndex + 1]);
+    setTimeout(() => {
+      nextField.focus();
+    }, 500);
+  }
+}
+
+function readbackForm() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  
+  let text = '';
+  if (name) text += `Name: ${name}. `;
+  if (email) text += `Email: ${email}. `;
+  if (message) text += `Message: ${message}.`;
+  
+  if (text && 'speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(utterance);
+  } else {
+    alert('No content to read or speech synthesis not supported');
+  }
+}
+</script>
+</body>
+</html>

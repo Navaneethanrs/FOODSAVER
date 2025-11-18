@@ -1,0 +1,73 @@
+<?php
+// Simple test to check if Brevo email is working
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+echo "<h1>Brevo Email Test</h1>";
+
+// Test Brevo API
+$api_key = 'xsmtpsib-4d9624ebe2f2bcea3f0ff9c0006b57848423c29b880b9ebc8fe8f15e5d61aa89-WOUZazv5hE8Tf60J';
+$from_email = 'foodsaver81@gmail.com';
+
+$payload = [
+    'sender' => [
+        'email' => $from_email,
+        'name' => 'Food Saver'
+    ],
+    'to' => [[ 
+        'email' => 'navaneethanrs106@gmail.com',
+        'name' => 'NOVA NGO'
+    ]],
+    'subject' => 'Test Email from Food Saver',
+    'htmlContent' => '<h1>Test Email</h1><p>This is a test email to verify Brevo API is working.</p>'
+];
+
+echo "<h2>Testing Brevo API...</h2>";
+echo "<p>From: $from_email</p>";
+echo "<p>To: navaneethanrs106@gmail.com</p>";
+
+$ch = curl_init('https://api.brevo.com/v3/smtp/email');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'accept: application/json',
+    'content-type: application/json',
+    'api-key: ' . $api_key
+]);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+$response = curl_exec($ch);
+$error = curl_error($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "<h3>Results:</h3>";
+echo "<p><strong>HTTP Code:</strong> $httpCode</p>";
+echo "<p><strong>cURL Error:</strong> " . ($error ? $error : 'None') . "</p>";
+echo "<p><strong>Response:</strong> <pre>" . htmlspecialchars($response) . "</pre></p>";
+
+if ($httpCode >= 200 && $httpCode < 300 && empty($error)) {
+    echo "<p style='color: green;'><strong>✅ SUCCESS!</strong> Email should be sent.</p>";
+} else {
+    echo "<p style='color: red;'><strong>❌ FAILED!</strong> Email not sent.</p>";
+    
+    if ($httpCode == 401) {
+        echo "<p><strong>Issue:</strong> API key is invalid or expired</p>";
+    } elseif ($httpCode == 400) {
+        echo "<p><strong>Issue:</strong> Sender email not verified in Brevo</p>";
+    } elseif ($httpCode == 403) {
+        echo "<p><strong>Issue:</strong> API key doesn't have permission</p>";
+    }
+}
+
+echo "<hr>";
+echo "<h2>Next Steps:</h2>";
+echo "<ol>";
+echo "<li>Check if you received the test email at navaneethanrs106@gmail.com</li>";
+echo "<li>If not received, check the Brevo dashboard for sender verification</li>";
+echo "<li>If API key issues, regenerate the key in Brevo</li>";
+echo "</ol>";
+
+echo "<p><a href='donate.html'>Back to Donation Form</a></p>";
+?>

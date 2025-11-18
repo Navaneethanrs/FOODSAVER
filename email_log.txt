@@ -1,0 +1,71 @@
+2025-10-19 13:31:29 - Email to: SWARNAMBIGAI (sih303699@gmail.com) - Donor: NOVA
+2025-11-02 07:15:04 - SUCCESS: Email sent to nova11@gmail.com
+2025-11-02 07:15:10 - SUCCESS: Email sent to his@gmail.com
+2025-11-02 07:15:16 - SUCCESS: Email sent to nav@gmail.com
+2025-11-02 07:15:23 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu
+2025-11-02 07:15:29 - SUCCESS: Email sent to nirajang.24it@kongu.edu
+2025-11-02 07:33:34 - SUCCESS: Email sent to nova11@gmail.com (nova11) for donation in Perundurai, Tamil Nadu
+2025-11-02 07:33:39 - SUCCESS: Email sent to his@gmail.com (his) for donation in Perundurai, Tamil Nadu
+2025-11-02 07:33:43 - SUCCESS: Email sent to nav@gmail.com (novas) for donation in Perundurai, Tamil Nadu
+2025-11-02 07:33:49 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu (navaneethanrs) for donation in Perundurai, Tamil Nadu
+2025-11-02 07:33:54 - SUCCESS: Email sent to nirajang.24it@kongu.edu (dome) for donation in Perundurai, Tamil Nadu
+2025-11-03 06:37:14 - SUCCESS: Email sent to nova11@gmail.com (nova11) for donation in Perundurai, Tamil Nadu
+2025-11-03 06:37:22 - SUCCESS: Email sent to his@gmail.com (his) for donation in Perundurai, Tamil Nadu
+2025-11-03 06:37:28 - SUCCESS: Email sent to nav@gmail.com (novas) for donation in Perundurai, Tamil Nadu
+2025-11-03 06:37:34 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu (navaneethanrs) for donation in Perundurai, Tamil Nadu
+2025-11-03 06:37:40 - SUCCESS: Email sent to nirajang.24it@kongu.edu (dome) for donation in Perundurai, Tamil Nadu
+2025-11-03 20:56:20 - SUCCESS: Email sent to nova11@gmail.com (nova11) for donation in Perundurai, Tamil Nadu
+2025-11-03 20:56:25 - SUCCESS: Email sent to his@gmail.com (his) for donation in Perundurai, Tamil Nadu
+2025-11-03 20:56:30 - SUCCESS: Email sent to nav@gmail.com (novas) for donation in Perundurai, Tamil Nadu
+2025-11-03 20:56:36 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu (navaneethanrs) for donation in Perundurai, Tamil Nadu
+2025-11-03 20:56:41 - SUCCESS: Email sent to nirajang.24it@kongu.edu (dome) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:00:24 - SUCCESS: Email sent to nova11@gmail.com (nova11) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:00:30 - SUCCESS: Email sent to his@gmail.com (his) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:00:36 - SUCCESS: Email sent to nav@gmail.com (novas) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:00:42 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu (navaneethanrs) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:00:49 - SUCCESS: Email sent to nirajang.24it@kongu.edu (dome) for donation in Perundurai, Tamil Nadu
+2025-11-03 21:02:11 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in Kongu engineering college , erode
+2025-11-03 21:02:16 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in Kongu engineering college , erode
+2025-11-03 21:02:21 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in Kongu engineering college , erode
+2025-11-03 21:08:20 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-03 21:08:27 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-03 21:08:33 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-03 21:13:12 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-03 21:13:17 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-03 21:13:25 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-03 21:18:25 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-03 21:18:30 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-03 21:18:35 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-03 21:22:31 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in Kongu engineering college
+2025-11-03 21:22:36 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in Kongu engineering college
+2025-11-03 21:30:20 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-03 21:30:25 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-03 21:30:30 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-03 21:45:52 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-03 21:45:57 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-03 21:46:02 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-04 09:08:43 - ERROR: Failed to send to niramn@gmail.com - SMTP Error: Could not connect to SMTP host. Failed to connect to server
+2025-11-04 09:09:04 - ERROR: Failed to send to navaneethanrs.24it@kongu.edu - SMTP Error: Could not connect to SMTP host. Failed to connect to server
+2025-11-04 09:09:25 - ERROR: Failed to send to navaneethanrs106@gmail.com - SMTP Error: Could not connect to SMTP host. Failed to connect to server
+2025-11-04 09:10:35 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-04 09:10:42 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-04 09:10:47 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-04 09:46:36 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-04 09:46:42 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-04 09:46:50 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-04 09:50:52 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-04 09:50:56 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-04 09:51:02 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-04 10:01:27 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-04 10:01:33 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-04 10:01:38 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-04 10:09:18 - ERROR: Failed to send to nova11@gmail.com - SMTP Error: Could not authenticate.
+2025-11-04 10:09:30 - SUCCESS: Email sent to his@gmail.com (his) for donation in Perundurai, Tamil Nadu
+2025-11-04 10:09:35 - SUCCESS: Email sent to nav@gmail.com (novas) for donation in Perundurai, Tamil Nadu
+2025-11-04 10:09:42 - SUCCESS: Email sent to nakshathrav.24it@kongu.edu (navaneethanrs) for donation in Perundurai, Tamil Nadu
+2025-11-04 10:09:47 - SUCCESS: Email sent to nirajang.24it@kongu.edu (dome) for donation in Perundurai, Tamil Nadu
+2025-11-04 10:13:34 - SUCCESS: Email sent to niramn@gmail.com (niranjan) for donation in kongu engineering college,erode
+2025-11-04 10:13:39 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in kongu engineering college,erode
+2025-11-04 10:13:43 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in kongu engineering college,erode
+2025-11-05 11:55:47 - SUCCESS: Email sent to navaneethanrs.24it@kongu.edu (navaneethan rs) for donation in KONGU ENGINEERING COLLEGE
+2025-11-05 11:55:52 - SUCCESS: Email sent to navaneethanrs106@gmail.com (NAVANEETHANRS) for donation in KONGU ENGINEERING COLLEGE
