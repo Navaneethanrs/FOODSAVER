@@ -1,7 +1,5 @@
 {
-  "version": 2,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
     { "source": "/register_ngo_fixed.php", "destination": "/api/register_ngo" },
     { "source": "/register_ngo.php", "destination": "/api/register_ngo" },
     { "source": "/save_donation_fixed_gmail.php", "destination": "/api/save_donation" },

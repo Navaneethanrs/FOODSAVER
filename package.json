@@ -1,8 +1,7 @@
 {
   "name": "food-saver",
   "version": "1.0.0",
-  "description": "Food Saver - Complete Donation System for Vercel",
-  "main": "api/index.js",
+  "description": "Food Saver - Complete Food Donation Platform",
   "scripts": {
     "start": "node server.js"
   },
