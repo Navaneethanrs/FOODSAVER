@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register NGO - Food Saver</title>
+
+  <!-- Bootstrap + Fonts + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('img11.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Decorative shapes */
+    .shape1, .shape2 {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.18;
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+    .shape1 {
+      width: 350px; height: 350px;
+      background: #ff7f50;
+      top: -80px; left: -100px;
+    }
+    .shape2 {
+      width: 250px; height: 250px;
+      background: #ff6347;
+      bottom: -60px; right: -80px;
+    }
+
+    .register-container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.85); /* increased opacity for better readability */
+      border-radius: 28px;
+      padding: 48px 36px 36px 36px;
+      max-width: 650px;
+      width: 100%;
+      margin: 60px auto 40px auto;
+      box-shadow: 0 10px 32px rgba(255,99,71,0.13), 0 2px 8px rgba(0,0,0,0.07);
+      animation: fadeIn 1s cubic-bezier(.77,0,.18,1);
+      backdrop-filter: blur(3px);
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 18px;
+      font-weight: 700;
+      color: #ff6347;
+      letter-spacing: 1px;
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, #ff7f50, #ff6347, #ffd700);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .register-container .subtitle {
+      text-align: center;
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #ff6347;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      border-radius: 14px;
+      padding: 13px 15px;
+      border: 1.5px solid #ffe5d9;
+      font-size: 1.05rem;
+      background: #fff;
+      transition: all 0.3s;
+      box-shadow: none;
+    }
+    .form-control:focus {
+      border-color: #ff6347;
+      box-shadow: 0 0 8px rgba(255,99,71,0.13);
+    }
+
+    .input-group-text {
+      background: #fff3e6;
+      border: none;
+      color: #ff6347;
+      font-size: 1.2rem;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .btn-custom {
+      background: linear-gradient(90deg, #ff7f50, #ff6347);
+      border: none;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      transition: transform 0.25s, box-shadow 0.25s;
+      width: 100%;
+      margin-top: 10px;
+      box-shadow: 0 4px 18px rgba(255,127,80,0.13);
+      letter-spacing: 1px;
+    }
+    .btn-custom:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(255,99,71,0.18);
+      background: linear-gradient(90deg, #ff6347, #ff7f50);
+    }
+
+    .btn-location {
+      background: linear-gradient(90deg, #28a745, #20c997);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .btn-location:hover {
+      background: linear-gradient(90deg, #20c997, #28a745);
+      transform: translateY(-2px);
+    }
+
+    .location-status {
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .location-accuracy {
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #28a745;
+      font-weight: 600;
+      margin-top: 18px;
+      font-size: 1.1rem;
+      animation: fadeIn 0.7s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .register-container {
+        padding: 28px 12px 24px 12px;
+      }
+      .shape1, .shape2 { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shape1"></div>
+  <div class="shape2"></div>
+  <div class="register-container shadow-lg">
+    <h2><i class="fas fa-hand-holding-heart"></i> NGO Registration</h2>
+    <div class="subtitle">Join our mission to save food and serve lives. Register your NGO and become a part of our network!</div>
+    <form id="ngoForm" action="register_ngo.php" method="POST" autocomplete="off">
+      <div class="mb-3">
+        <label class="form-label">NGO Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-users"></i></span>
+          <input type="text" name="ngo_name" class="form-control" placeholder="Enter NGO Name" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Contact Person's Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-user"></i></span>
+          <input type="text" name="contact_person" class="form-control" placeholder="Enter Contact Person Name" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+          <input type="tel" name="phone_number" class="form-control" placeholder="Enter Phone Number" required pattern="[0-9]{10,}">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email ID</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+          <input type="email" name="email" class="form-control" placeholder="Enter Email Address" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Exact Location / Address</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+          <textarea name="address" id="address" class="form-control" rows="2" placeholder="Enter Full Address" required></textarea>
+        </div>
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+        <input type="hidden" id="accuracy" name="accuracy">
+        
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <button type="button" class="btn btn-location" id="locationBtn" onclick="getLocation()">
+            <i class="fas fa-crosshairs"></i> Get My Exact GPS Location
+          </button>
+          <div id="locationStatus" class="location-status"></div>
+        </div>
+        <div id="locationAccuracy" class="location-accuracy mt-1"></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Operating Hours</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-clock"></i></span>
+          <input type="text" name="operating_hours" class="form-control" placeholder="e.g., 9 AM – 9 PM" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-custom"><i class="fas fa-paper-plane"></i> Register NGO</button>
+      <div class="success-message" id="successMsg">
+        <i class="fas fa-check-circle"></i> Registration successful! Thank you for joining us.
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let locationWatchId = null;
+    let bestAccuracy = null;
+    let bestPosition = null;
+    let accuracyThreshold = 10; // meters - adjust for desired accuracy
+    
+    function getLocation() {
+      const locationBtn = document.getElementById('locationBtn');
+      const locationStatus = document.getElementById('locationStatus');
+      const locationAccuracy = document.getElementById('locationAccuracy');
+      
+      locationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Acquiring High-Accuracy GPS...';
+      locationBtn.disabled = true;
+      locationStatus.innerHTML = '<span class="text-warning">Searching for satellites...</span>';
+      locationAccuracy.innerHTML = '';
+      
+      if (!navigator.geolocation) {
+        locationStatus.innerHTML = '<span class="text-danger">GPS not supported by your device.</span>';
+        resetLocationButton();
+        return;
+      }
+      
+      // Clear any previous watch
+      if (locationWatchId) {
+        navigator.geolocation.clearWatch(locationWatchId);
+      }
+      
+      // Maximum accuracy GPS options
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 60000,
+        maximumAge: 0
+      };
+      
+      // Reset best values
+      bestAccuracy = null;
+      bestPosition = null;
+      
+      // Start watching position for continuous updates
+      locationWatchId = navigator.geolocation.watchPosition(
+        function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const accuracy = position.coords.accuracy;
+          
+          // Update best position if this one is more accurate
+          if (bestAccuracy === null || accuracy < bestAccuracy) {
+            bestAccuracy = accuracy;
+            bestPosition = position;
+            
+            // Update UI with current accuracy
+            locationAccuracy.innerHTML = `Current accuracy: ${Math.round(accuracy)} meters`;
+            
+            // If we've reached our accuracy threshold, use this position
+            if (accuracy <= accuracyThreshold) {
+              // We have good enough accuracy, stop watching and use this position
+              navigator.geolocation.clearWatch(locationWatchId);
+              locationWatchId = null;
+              processLocation(position);
+            }
+          }
+        },
+        function(error) {
+          handleLocationError(error);
+        },
+        options
+      );
+      
+      // Set a timeout to use the best position we have after 30 seconds
+      setTimeout(() => {
+        if (locationWatchId) {
+          navigator.geolocation.clearWatch(locationWatchId);
+          locationWatchId = null;
+          
+          if (bestPosition) {
+            processLocation(bestPosition);
+          } else {
+            locationStatus.innerHTML = '<span class="text-danger">Unable to get location. Please try again.</span>';
+            resetLocationButton();
+          }
+        }
+      }, 30000);
+    }
+    
+    function processLocation(position) {
+      const locationBtn = document.getElementById('locationBtn');
+      const locationStatus = document.getElementById('locationStatus');
+      const locationAccuracy = document.getElementById('locationAccuracy');
+      
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const accuracy = position.coords.accuracy;
+      
+      // Store exact GPS coordinates
+      document.getElementById('latitude').value = lat;
+      document.getElementById('longitude').value = lon;
+      document.getElementById('accuracy').value = accuracy;
+      
+      console.log(`High-accuracy GPS: ${lat}, ${lon} (±${accuracy}m)`);
+      
+      // Get detailed address using multiple services for better accuracy
+      getAddressFromCoordinates(lat, lon)
+        .then(address => {
+          document.getElementById('address').value = address || `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+          
+          locationStatus.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> High-accuracy GPS locked!</span>';
+          locationAccuracy.innerHTML = `Final accuracy: ${Math.round(accuracy)} meters`;
+          locationBtn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Exact GPS Location';
+          locationBtn.disabled = false;
+        })
+        .catch(error => {
+          document.getElementById('address').value = `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+          locationStatus.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> GPS coordinates saved!</span>';
+          locationAccuracy.innerHTML = `Final accuracy: ${Math.round(accuracy)} meters`;
+          locationBtn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Exact GPS Location';
+          locationBtn.disabled = false;
+        });
+    }
+    
+    function getAddressFromCoordinates(lat, lon) {
+      // Try multiple geocoding services for better results
+      return Promise.any([
+        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
+          .then(response => response.json())
+          .then(data => {
+            let address = '';
+            if (data.locality) address += data.locality;
+            if (data.city && data.city !== data.locality) address += (address ? ', ' : '') + data.city;
+            if (data.principalSubdivision) address += ', ' + data.principalSubdivision;
+            if (data.countryName) address += ', ' + data.countryName;
+            return address;
+          }),
+          
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.address) {
+              let address = '';
+              if (data.address.road) address += data.address.road;
+              if (data.address.suburb && data.address.suburb !== data.address.road) address += (address ? ', ' : '') + data.address.suburb;
+              if (data.address.city || data.address.town || data.address.village) {
+                address += (address ? ', ' : '') + (data.address.city || data.address.town || data.address.village);
+              }
+              if (data.address.state) address += ', ' + data.address.state;
+              return address;
+            }
+            return null;
+          })
+      ]).catch(() => null);
+    }
+    
+    function handleLocationError(error) {
+      const locationBtn = document.getElementById('locationBtn');
+      const locationStatus = document.getElementById('locationStatus');
+      
+      let msg = 'Location error. ';
+      if (error.code === 1) {
+        msg = 'Location access denied. Please enable location permissions in your browser settings.';
+      } else if (error.code === 2) {
+        msg = 'GPS unavailable. Please check if your device has GPS capability.';
+      } else if (error.code === 3) {
+        msg = 'Location request timed out. Please try again in an area with better GPS signal.';
+      } else {
+        msg = 'Unknown location error. Please try again.';
+      }
+      
+      locationStatus.innerHTML = `<span class="text-danger">${msg}</span>`;
+      resetLocationButton();
+    }
+    
+    function resetLocationButton() {
+      const locationBtn = document.getElementById('locationBtn');
+      locationBtn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Exact GPS Location';
+      locationBtn.disabled = false;
+    }
+
+    document.getElementById('ngoForm').onsubmit = function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const successMsg = document.getElementById('successMsg');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+      
+      fetch('register_ngo_fixed.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          successMsg.style.display = 'block';
+          this.reset();
+          setTimeout(() => {
+            successMsg.style.display = 'none';
+          }, 5000);
+        } else {
+          alert(data.message || 'Registration failed. Please try again.');
+        }
+      })
+      .catch(error => {
+        alert('Error: ' + error.message);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Register NGO';
+      });
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/register_ngo_fixed.php", "destination": "/api/register_ngo" },
+    { "source": "/register_ngo.php", "destination": "/api/register_ngo" },
+    { "source": "/save_donation_fixed_gmail.php", "destination": "/api/save_donation" },
+    { "source": "/save_donation.php", "destination": "/api/save_donation" },
+    { "source": "/get_notifications.php", "destination": "/api/get_notifications" },
+    { "source": "/get_accepted_donations.php", "destination": "/api/get_accepted_donations" },
+    { "source": "/get_stats.php", "destination": "/api/stats" },
+    { "source": "/view_ngos.php", "destination": "/view_ngos.html" },
+    { "source": "/admin_dashboard.php", "destination": "/admin.html" },
+    { "source": "/view_donations.php", "destination": "/admin.html" }
+  ]
+}

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Learn about Food Saver's mission to reduce food waste and help communities through food rescue">
+<title>About Us - Food Saver</title>
+
+<!-- Preload critical resources -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" as="style">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+<link rel="preload" href="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg" as="image">
+
+<!-- Bootstrap + Fonts + Icons + AOS Animation -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+    :root {
+        --primary: #ff6347;
+        --primary-light: #ff7f50;
+        --primary-dark: #ff4500;
+        --accent: #ffd700;
+        --text-dark: #333;
+        --text-medium: #555;
+        --bg-light: #fffefc;
+        --bg-cream: #fff3e6;
+        --bg-yellow: #fffbe6;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        background-color: var(--bg-light);
+        line-height: 1.7;
+    }
+
+    /* Navbar - Enhanced with glass morphism */
+    nav.navbar {
+        background: linear-gradient(90deg, var(--primary-light), var(--primary)) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.4s ease;
+    }
+    nav.navbar.scrolled {
+        background: rgba(255, 127, 80, 0.9) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+    .nav-link {
+        color: white !important;
+        font-weight: 500;
+        position: relative;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--accent);
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link:focus::after {
+        width: 70%;
+    }
+    .nav-link.active {
+        font-weight: 600;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary);
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+
+    /* Hero Section - Enhanced with parallax effect */
+    .about-header {
+        background: url('https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg') no-repeat center center / cover;
+        height: 60vh;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: white;
+        text-align: center;
+        margin-top: 56px;
+        background-attachment: fixed;
+        overflow: hidden;
+    }
+    .about-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,99,71,0.7), rgba(0,0,0,0.6));
+    }
+    .about-header h1 {
+        position: relative;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        background: linear-gradient(45deg, var(--accent), var(--primary), var(--primary-dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        animation: fadeInUp 1s ease both;
+        letter-spacing: 1px;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About Content - Enhanced with floating animation */
+    .about-content {
+        padding: 5rem 1.5rem;
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+        position: relative;
+    }
+    .about-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0) 70%);
+        z-index: -1;
+        animation: float 6s ease-in-out infinite;
+    }
+    .about-content h2 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+    .about-content h2::after {
+        content: "";
+        width: 80px;
+        height: 5px;
+        background: var(--primary-light);
+        display: block;
+        margin: 1rem auto 0;
+        border-radius: 3px;
+        transition: width 0.5s ease;
+    }
+    .about-content:hover h2::after {
+        width: 120px;
+    }
+    .about-content p {
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeIn 1s ease forwards;
+        animation-delay: 0.3s;
+    }
+    .about-content p:nth-child(2) { animation-delay: 0.4s; }
+    .about-content p:nth-child(3) { animation-delay: 0.5s; }
+    .about-content p:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-20px); }
+    }
+
+    /* Impact Counter - Enhanced with counting animation */
+    .counter-section {
+        background-color: var(--bg-cream);
+        padding: 5rem 1.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .counter-section::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(255,99,71,0.1) 0%, rgba(255,99,71,0) 70%);
+        border-radius: 50%;
+    }
+    .counter-section h2 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    .counter-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--primary-light);
+        border-radius: 3px;
+    }
+    .counters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .counter {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 0.5rem;
+        font-feature-settings: "tnum";
+        transition: all 0.5s ease;
+    }
+    .counter-label {
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    /* Before/After Section - Enhanced with hover effects */
+    .before-after {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1100px;
+        margin: 5rem auto;
+        gap: 2rem;
+        padding: 0 1.5rem;
+        justify-content: center;
+    }
+    .before, .after {
+        flex: 1 1 45%;
+        min-width: 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .before:hover, .after:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    .before img, .after img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .before:hover img, .after:hover img {
+        transform: scale(1.1);
+    }
+    .before::after, .after::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255,127,80,0.9);
+        color: white;
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    .before:hover::after, .after:hover::after {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+    }
+
+    /* Story / Testimonials - Enhanced with card hover effects */
+    .story-section {
+        background-color: var(--bg-yellow);
+        padding: 5rem 1.5rem;
+        text-align: center;
+        position: relative;
+    }
+    .story-section::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: linear-gradient(90deg, var(--primary-light), var(--primary));
+        opacity: 0.1;
+    }
+    .story-section h2 {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    .story-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-light);
+    }
+    .story-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .story-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        width: 300px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    .story-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 0;
+        background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+        transition: height 0.5s ease;
+    }
+    .story-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    .story-card:hover::before {
+        height: 100%;
+    }
+    .story-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        object-fit: cover;
+        border: 3px solid rgba(255,127,80,0.2);
+        transition: all 0.5s ease;
+    }
+    .story-card:hover img {
+        border-color: var(--primary-light);
+        transform: scale(1.1);
+    }
+    .story-card h5 {
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+    }
+    .story-card p {
+        font-size: 0.95rem;
+        color: var(--text-medium);
+        font-style: italic;
+        position: relative;
+    }
+    .story-card p::before {
+        content: '"';
+        font-size: 3rem;
+        position: absolute;
+        top: -25px;
+        left: -15px;
+        color: rgba(255,99,71,0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+    /* Team Section - Enhanced with social hover effects */
+    .team {
+        padding: 5rem 1.5rem;
+        text-align: center;
+        background: linear-gradient(180deg, white 0%, var(--bg-cream) 100%);
+    }
+    .team h2 {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    .team h2::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-light);
+    }
+    .team-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .team-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        padding: 2rem;
+        width: 280px;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    .team-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        transition: height 0.3s ease;
+    }
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    .team-card:hover::after {
+        height: 10px;
+    }
+    .team-card img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        border: 5px solid rgba(255,127,80,0.1);
+        transition: all 0.5s ease;
+    }
+    .team-card:hover img {
+        border-color: var(--primary-light);
+        transform: scale(1.05);
+    }
+    .team-card h5 {
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+    .team-card p {
+        font-size: 1rem;
+        color: var(--text-medium);
+        margin-bottom: 1.5rem;
+    }
+    .team-social {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .team-social a {
+        color: var(--text-medium);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+    .team-social a:hover {
+        color: var(--primary);
+        transform: translateY(-3px);
+    }
+
+    /* Footer - Enhanced with wave effect */
+    footer {
+        background: linear-gradient(90deg, var(--primary-light), var(--primary));
+        color: white;
+        padding: 3rem 0 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    footer::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23fff3e6' opacity='.25'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' fill='%23fff3e6' opacity='.5'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23fff3e6'/%3E%3C/svg%3E");
+        background-size: cover;
+    }
+    footer p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+    }
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .social-icons a {
+        color: white;
+        font-size: 1.3rem;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+    }
+    .social-icons a:hover {
+        color: var(--accent);
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-5px) scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .about-header {
+            height: 50vh;
+            min-height: 400px;
+        }
+    }
+    @media (max-width: 768px) {
+        .about-header {
+            height: 40vh;
+            min-height: 300px;
+        }
+        .about-content h2,
+        .counter-section h2,
+        .story-section h2,
+        .team h2 {
+            font-size: 2rem;
+        }
+        .counters {
+            gap: 2rem;
+        }
+        .counter {
+            font-size: 2rem;
+        }
+    }
+    @media (max-width: 576px) {
+        .about-header h1 {
+            font-size: 2.2rem;
+        }
+        .before, .after {
+            min-width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Skip to content link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<div class="container">
+    <a class="navbar-brand fw-bold" href="index.html" aria-label="Food Saver Home"><i class="fas fa-utensils" aria-hidden="true"></i> Food Saver</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#" aria-current="page">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.html">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+    </ul>
+    </div>
+</div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f55c3d;">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FOOD SAVER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.html">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="registerngo.html">REGISTER NGO</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Header -->
+<section class="about-header" data-aos="fade">
+<h1 data-aos="fade-up" data-aos-delay="200">About Food Saver</h1>
+</section>
+
+<!-- About Content -->
+<main id="main-content" class="about-content">
+    <h2 data-aos="fade-up">Our Story</h2>
+    <p data-aos="fade-up" data-aos-delay="100">Every day, tonnes of perfectly good food are thrown away while countless people go to bed on an empty stomach. In 2025, we decided this was unacceptable — and <strong>Food Saver</strong> was born. Our mission is clear: <em>rescue surplus food and deliver it to those who need it most</em>.</p>
+    <p data-aos="fade-up" data-aos-delay="150">From the extra trays at weddings to untouched meals in restaurants, we connect generous donors with hungry hearts. With the help of passionate volunteers, we transform what would have been waste into <strong>warm, nutritious meals</strong> — meals that bring smiles, hope, and dignity.</p>
+    <p data-aos="fade-up" data-aos-delay="200">For us, food is more than just sustenance. It's comfort in hard times. It's proof that someone cares. And it's a reminder that together, we can build a world where <strong>no plate is wasted and no soul is forgotten</strong>.</p>
+</main>
+
+<!-- Impact Counter -->
+<section class="counter-section" data-aos="fade-up">
+<h2 data-aos="fade-up">Our Impact</h2>
+<div class="counters">
+    <div data-aos="zoom-in" data-aos-delay="100">
+    <div class="counter" data-count="12348">0</div>
+    <div class="counter-label">Meals Served</div>
+    </div>
+    <div data-aos="zoom-in" data-aos-delay="200">
+    <div class="counter" data-count="1256">0</div>
+    <div class="counter-label">Food Saved</div>
+    </div>
+    <div data-aos="zoom-in" data-aos-delay="300">
+    <div class="counter" data-count="98">0</div>
+    <div class="counter-label">Volunteers Joined</div>
+    </div>
+</div>
+</section>
+
+<!-- Before/After -->
+<section class="before-after">
+<div class="before" data-label="Before: Food Wasted" data-aos="fade-right">
+    <img src="img5.jpg" alt="Food Wasted">
+</div>
+<div class="after" data-label="After: Served to Families" data-aos="fade-left">
+    <img src="img6.jpg" alt="Food Served">
+</div>
+</section>
+
+<!-- Stories -->
+<section class="story-section" data-aos="fade-up">
+<h2 data-aos="fade-up">Stories of Change</h2>
+<div class="story-cards">
+    <div class="story-card" data-aos="zoom-in" data-aos-delay="100">
+    <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" alt="Gookul">
+    <h5>Gookul</h5>
+    <p>"Food Saver gave my family our first warm meal after days of struggle. Forever grateful!"</p>
+    </div>
+    <div class="story-card" data-aos="zoom-in" data-aos-delay="200">
+    <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg" alt="Nakshathra">
+    <h5>Nakshathra</h5>
+    <p>"Volunteering here changed how I see community support. It's rewarding to help in real ways."</p>
+    </div>
+    <div class="story-card" data-aos="zoom-in" data-aos-delay="300">
+    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" alt="Varshan">
+    <h5>Varshan</h5>
+    <p>"I donated leftover food from my wedding, and it went directly to families in need. Incredible experience!"</p>
+    </div>
+</div>
+</section>
+
+<!-- Team -->
+<!-- Team -->
+<section class="team" data-aos="fade-up">
+    <h2 data-aos="fade-up">Meet Our Team</h2>
+    <div class="team-cards">
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="img7.jpg" alt="Nova">
+            <h5>Nova</h5>
+            <p>Founder & CEO</p>
+        </div>
+        <div class="team-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="img9.jpg" alt="Dharshan">
+            <h5>Dharshan</h5>
+            <p>Operations Head</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer data-aos="fade-up">
+<p>&copy; 2025 Food Saver. All Rights Reserved.</p>
+<div class="social-icons">
+    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</footer>
+
+<!-- Bootstrap JS + AOS Animation -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="bell_notification.js"></script>
+<script>
+    // Initialize AOS animation
+    AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-out-quad'
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Fetch dynamic stats
+    fetch('get_stats.php')
+        .then(res => res.json())
+        .then(data => {
+            document.querySelectorAll('.counter')[0].setAttribute('data-count', data.meals);
+            document.querySelectorAll('.counter')[1].setAttribute('data-count', data.food_saved);
+            document.querySelectorAll('.counter')[2].setAttribute('data-count', data.volunteers);
+        });
+
+    // Counter animation
+    function animateCounters() {
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-count');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        });
+    }
+
+    // Start counter when section is in view
+    const counterSection = document.querySelector('.counter-section');
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            animateCounters();
+            observer.unobserve(counterSection);
+        }
+    }, { threshold: 0.5 });
+
+    observer.observe(counterSection);
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>

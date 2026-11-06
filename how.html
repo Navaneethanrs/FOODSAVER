@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Learn how Food Saver works to reduce food waste and help those in need through our 4-step process">
+  <title>How It Works - Food Saver</title>
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
+  <!-- Bootstrap + Fonts + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #ff6347;
+      --secondary-color: #ff7f50;
+      --accent-color: #ffd700;
+      --dark-accent: #ff4500;
+      --text-dark: #333;
+      --text-medium: #555;
+      --light-bg: #fffefc;
+      --gradient-bg: linear-gradient(180deg, #fff3e6 0%, #fffdf9 100%);
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    nav.navbar {
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .navbar-brand {
+      font-weight: 700;
+    }
+    nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+    }
+    nav .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+    nav .nav-link:hover::after,
+    nav .nav-link:focus::after {
+      width: 100%;
+    }
+    nav .nav-link.active {
+      font-weight: 600;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Hero Section */
+    .how-header {
+      background: url('img8.jpg') no-repeat center center / cover;
+      height: 55vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+      text-align: center;
+      margin-top: 56px; /* Account for fixed navbar */
+    }
+    .how-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55); /* darker overlay for readability */
+    }
+    .how-header h1 {
+      position: relative;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 10px rgba(255,215,0,0.8);
+      padding: 0.5rem 1.5rem;
+      border-radius: 12px;
+      display: inline-block;
+      animation: fadeInDown 1.2s ease both, glow 2s infinite alternate;
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-40px)}
+      to {opacity: 1; transform: translateY(0)}
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 8px rgba(255,215,0,0.6);
+      }
+      to {
+        text-shadow: 0 4px 25px rgba(0,0,0,0.9), 0 0 16px rgba(255,99,71,0.9), 0 0 24px rgba(255,215,0,0.9);
+      }
+    }
+
+    /* How It Works Section */
+    .how-section {
+      padding: 5rem 1.25rem;
+      background: var(--gradient-bg);
+      text-align: center;
+    }
+    .how-section h2 {
+      font-size: 2.625rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 3.125rem;
+      position: relative;
+      display: inline-block;
+    }
+    .how-section h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 4px;
+      background: var(--secondary-color);
+      margin: 0.75rem auto 0;
+      border-radius: 3px;
+    }
+
+    .how-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.875rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .how-card {
+      background: white;
+      border-radius: 1.125rem;
+      padding: 1.875rem 1.5625rem;
+      width: 17.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      will-change: transform;
+    }
+    .how-card::before {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,99,71,0.1), rgba(255,215,0,0.15));
+      transition: top 0.5s;
+    }
+    .how-card:hover::before,
+    .how-card:focus-within::before {
+      top: 0;
+    }
+    .how-card:hover,
+    .how-card:focus-within {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 20px rgba(255, 127, 80, 0.4);
+    }
+    .how-card i {
+      font-size: 3.4375rem;
+      color: var(--primary-color);
+      margin-bottom: 1.125rem;
+      transition: transform 0.35s ease, color 0.35s ease;
+      text-shadow: 0 4px 10px rgba(255,99,71,0.3);
+    }
+    .how-card:hover i,
+    .how-card:focus-within i {
+      transform: scale(1.25) rotate(8deg);
+      color: var(--dark-accent);
+    }
+    .how-card h4 {
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+      font-size: 1.125rem;
+    }
+    .how-card p {
+      font-size: 0.9375rem;
+      color: var(--text-medium);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 2.1875rem 0;
+      text-align: center;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+    }
+    footer .social-icons {
+      margin: 1rem 0;
+    }
+    footer .social-icons a {
+      color: white;
+      margin: 0 0.75rem;
+      font-size: 1.375rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+    footer .social-icons a:hover,
+    footer .social-icons a:focus {
+      color: var(--accent-color);
+      transform: scale(1.2);
+      outline: none;
+    }
+    footer p {
+      margin-bottom: 0;
+    }
+
+    /* Focus styles for accessibility */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 3px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .how-header {
+        height: 40vh;
+        min-height: 300px;
+      }
+      .how-section h2 {
+        font-size: 2rem;
+      }
+      .how-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Skip to content link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f55c3d;">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FOOD SAVER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.html">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="registerngo.html">REGISTER NGO</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hero Header -->
+<section class="how-header">
+  <h1>How It Works</h1>
+</section>
+
+<!-- How It Works Section -->
+<main id="main-content" class="how-section">
+  <h2 data-aos="fade-up">Our 4-Step Process</h2>
+  <div class="how-cards">
+    <div class="how-card" data-aos="zoom-in" data-aos-delay="100" tabindex="0">
+      <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
+      <h4>Step 1: Collect Surplus</h4>
+      <p>We gather extra food from restaurants, events, and households that would otherwise go to waste.</p>
+    </div>
+    <div class="how-card" data-aos="zoom-in" data-aos-delay="200" tabindex="0">
+      <i class="fas fa-truck-loading" aria-hidden="true"></i>
+      <h4>Step 2: Safe Transport</h4>
+      <p>Our volunteers transport the food in hygienic containers to maintain freshness and safety.</p>
+    </div>
+    <div class="how-card" data-aos="zoom-in" data-aos-delay="300" tabindex="0">
+      <i class="fas fa-warehouse" aria-hidden="true"></i>
+      <h4>Step 3: Organize & Store</h4>
+      <p>Collected food is sorted and stored properly to ensure it is ready for distribution.</p>
+    </div>
+    <div class="how-card" data-aos="zoom-in" data-aos-delay="400" tabindex="0">
+      <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+      <h4>Step 4: Distribute</h4>
+      <p>We deliver meals directly to homeless shelters, orphanages, and families in need.</p>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Food Saver. All Rights Reserved.</p>
+  <div class="social-icons">
+    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS after DOM loads
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-quad'
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>

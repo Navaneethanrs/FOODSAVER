@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Donate food easily through Food Saver and help those in need">
+  <title>Donate Food - Food Saver</title>
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></noscript>
+
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://unpkg.com">
+
+  <!-- Load fonts with font-display: swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Load Font Awesome asynchronously -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Load AOS Animation CSS asynchronously -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Inline critical CSS -->
+  <style>
+    :root {
+      --primary-color: #ff6347;
+      --secondary-color: #ff7f50;
+      --accent-color: #ffd700;
+      --dark-accent: #ff4500;
+      --text-dark: #333;
+      --text-medium: #555;
+      --light-bg: #fffefc;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text-dark);
+      background: url('img12.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 0;
+    }
+
+    /* Navbar */
+    nav.navbar {
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    nav .navbar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff !important;
+      letter-spacing: 1px;
+    }
+    nav .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      margin: 0 0.4rem;
+      position: relative;
+    }
+    nav .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background-color: var(--accent-color);
+      transition: 0.3s ease;
+      transform: translateX(-50%);
+    }
+    nav .nav-link:hover::after,
+    nav .nav-link.active::after {
+      width: 70%;
+    }
+
+    /* Donate Section */
+    .donate-section {
+      padding: 7rem 1rem 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      position: relative;
+      min-height: calc(100vh - 56px - 60px);
+      box-sizing: border-box;
+    }
+    .donate-card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 20px;
+      padding: 2.8rem 2rem;
+      width: 100%;
+      max-width: 650px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+      animation: fadeUp 1s ease;
+    }
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Headings */
+    .donate-card h2 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 2.3rem;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+    .donate-card p {
+      text-align: center;
+      color: var(--text-medium);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    /* Form */
+    .form-label {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .input-group-text {
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 12px 0 0 12px;
+    }
+    .form-control {
+      border-radius: 0 12px 12px 0;
+      padding: 12px;
+      border: 1px solid #eee;
+      transition: all 0.3s;
+      background: rgba(255,255,255,0.98);
+    }
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px #ffd70055;
+    }
+
+    .btn-donate {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.85rem;
+      font-size: 1.05rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-donate:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,99,71,0.4);
+    }
+
+    /* Location specific styles */
+    .location-status {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      display: none;
+    }
+    .location-status.success {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: #155724;
+      border: 1px solid rgba(40, 167, 69, 0.3);
+    }
+    .location-status.error {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: #721c24;
+      border: 1px solid rgba(220, 53, 69, 0.3);
+    }
+    .location-status.info {
+      background-color: rgba(23, 162, 184, 0.1);
+      color: #0c5460;
+      border: 1px solid rgba(23, 162, 184, 0.3);
+    }
+    .location-accuracy {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-top: 0.25rem;
+    }
+    .location-coordinates {
+      font-size: 0.8rem;
+      color: #6c757d;
+      font-family: monospace;
+      margin-top: 0.25rem;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      text-align: center;
+      padding: 0.8rem 0 0.3rem 0;
+      border-radius: 1rem 1rem 0 0;
+      font-size: 0.95rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      z-index: 10;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+    }
+    footer .social-icons {
+      margin-top: 0.3rem;
+    }
+    footer .social-icons a {
+      color: #fff;
+      margin: 0 0.4rem;
+      font-size: 1.2rem;
+      display: inline-block;
+      transition: transform 0.3s, color 0.3s;
+      border-radius: 50%;
+      padding: 0.35rem;
+      background: rgba(255,255,255,0.08);
+    }
+    footer .social-icons a:hover {
+      color: var(--accent-color);
+      background: rgba(255,255,255,0.18);
+      transform: scale(1.2) translateY(-2px);
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .donate-card { padding: 2rem 1.5rem; }
+      .donate-card h2 { font-size: 2rem; }
+    }
+    @media(max-width: 576px) {
+      nav .navbar-brand { font-size: 1.3rem; }
+      .donate-card h2 { font-size: 1.6rem; }
+      .btn-donate { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FOOD SAVER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link active" href="donate.html" aria-current="page">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="registerngo.html">REGISTER NGO</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Form Section -->
+<section class="donate-section">
+  <div class="donate-card" data-aos="zoom-in">
+    <h2><i class="fas fa-hand-holding-heart" aria-hidden="true"></i> Donate Food</h2>
+    <p>Fill in the details below to connect with NGOs nearby.</p>
+    <form id="donationForm" action="save_donation_fixed_gmail.php" method="POST">
+      <div class="mb-3">
+        <label class="form-label" for="donor_name">Your Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-user" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" id="donor_name" name="donor_name" placeholder="Enter your full name" required>
+        </div>
+        <div class="invalid-feedback">Please provide your name.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="food_type">Food Type</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-utensils" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" id="food_type" name="food_type" placeholder="E.g. Dosa, Idly, Rice" required>
+        </div>
+        <div class="invalid-feedback">Please specify the type of food.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="quantity">Quantity</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-sort-amount-up" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" id="quantity" name="quantity" placeholder="E.g. 20 plates, 5kg rice" required>
+        </div>
+        <div class="invalid-feedback">Please specify the quantity.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Exact Location</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" id="location" name="location" placeholder="Enter your city or area" required>
+        </div>
+        
+        <!-- Location status messages -->
+        <div id="locationStatus" class="location-status"></div>
+        <div id="locationAccuracy" class="location-accuracy"></div>
+        <div id="locationCoordinates" class="location-coordinates"></div>
+        
+        <div class="d-flex gap-2 mt-2">
+          <button type="button" class="btn btn-outline-success btn-sm flex-fill" onclick="getMyLocation(this)">
+            <i class="fas fa-crosshairs"></i> Get My Exact GPS Location
+          </button>
+          <button type="button" class="btn btn-outline-primary btn-sm flex-fill" onclick="refineLocation()">
+            <i class="fas fa-bullseye"></i> Refine Location
+          </button>
+        </div>
+        
+        <small class="text-success d-block mt-1">🎯 High-accuracy GPS positioning with multiple sources</small>
+        <div class="invalid-feedback">Please provide your location.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="donor_contact">Your Contact Number</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-phone" aria-hidden="true"></i></span>
+          <input type="tel" class="form-control" id="donor_contact" name="donor_contact" placeholder="Enter your phone number" 
+                 required pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+        </div>
+        <div class="invalid-feedback">Please provide a valid 10-digit phone number.</div>
+        <div class="form-text">We'll never share your contact with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="pickup_time">Preferred Pickup Time</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-clock" aria-hidden="true"></i></span>
+          <select class="form-control" id="pickup_time" name="pickup_time" required>
+            <option value="">Select preferred time</option>
+            <option value="morning">Morning (8 AM - 12 PM)</option>
+            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+            <option value="evening">Evening (4 PM - 8 PM)</option>
+            <option value="anytime">Anytime</option>
+          </select>
+        </div>
+        <div class="invalid-feedback">Please select a preferred pickup time.</div>
+      </div>
+      <input type="hidden" id="latitude" name="latitude">
+      <input type="hidden" id="longitude" name="longitude">
+      <input type="hidden" id="location_accuracy" name="location_accuracy">
+      <button type="submit" class="btn btn-donate w-100 mt-3" id="submitBtn">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i> <span id="btnText">Donate Now</span>
+      </button>
+    </form>
+
+    <!-- NGO Matching Status -->
+    <div id="ngoMatchingStatus" class="mt-4" style="display: none;">
+        <div class="alert alert-info">
+            <h6><i class="fas fa-search-location"></i> Finding Nearby NGOs...</h6>
+            <div id="matchingProgress" class="progress mt-2" style="height: 8px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+            </div>
+            <small id="matchingText" class="d-block mt-2">Scanning our database for NGOs in your area...</small>
+        </div>
+        
+        <div id="matchedNGOs" class="mt-3" style="display: none;">
+            <h6><i class="fas fa-users"></i> Nearby NGOs Found:</h6>
+            <div id="ngoList" class="list-group"></div>
+        </div>
+    </div>
+    
+    <!-- Success/Error Messages -->
+    <div id="successMessage" class="alert alert-success mt-3" style="display: none;">
+      <i class="fas fa-check-circle"></i> Thank you! Your donation has been submitted successfully. NGOs in your area will be notified.
+    </div>
+    <div id="errorMessage" class="alert alert-danger mt-3" style="display: none;">
+      <i class="fas fa-exclamation-circle"></i> <span id="errorText">Something went wrong. Please try again.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Food Saver. All Rights Reserved.</p>
+  <div class="social-icons">
+    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<!-- Load scripts asynchronously and defer where possible -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+<script src="bell_notification.js" defer></script>
+<script>
+  // Load AOS after DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS if available
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true,
+        easing: 'ease-in-out'
+      });
+    }
+
+    // Enhanced form handling with AJAX
+    const donationForm = document.getElementById('donationForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+
+    if (donationForm) {
+      donationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!this.checkValidity()) {
+          this.classList.add('was-validated');
+          const invalidField = this.querySelector(':invalid');
+          if (invalidField) {
+            invalidField.focus();
+          }
+          return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'none';
+
+        // Ensure precise location is captured
+        const lat = document.getElementById('latitude').value;
+        const lon = document.getElementById('longitude').value;
+        if (!lat || !lon) {
+          showLocationStatus('Please tap "Get My Exact GPS Location" to capture precise coordinates.', 'error');
+          submitBtn.disabled = false;
+          btnText.innerHTML = 'Donate Now';
+          return;
+        }
+
+        // Prepare form data
+        const formData = new FormData(this);
+
+        // Send AJAX request
+        fetch('save_donation_fixed_gmail.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            successMessage.style.display = 'block';
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            this.reset();
+            this.classList.remove('was-validated');
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+        })
+        .catch(error => {
+          errorMessage.style.display = 'block';
+          document.getElementById('errorText').textContent = error.message || 'Something went wrong. Please try again.';
+          errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .finally(() => {
+          // Reset button state
+          submitBtn.disabled = false;
+          btnText.innerHTML = 'Donate Now';
+        });
+      }, {passive: false});
+    }
+    
+    // Preload background image
+    const bgImage = new Image();
+    bgImage.src = 'img12.jpg';
+    
+
+  });
+
+  // Enhanced location detection with multiple fallbacks
+  function getMyLocation(btn) {
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting GPS...';
+    btn.disabled = true;
+    
+    // Clear previous status messages
+    clearLocationStatus();
+    
+    if (!navigator.geolocation) {
+      showLocationStatus('GPS not supported by your browser. Please enter location manually.', 'error');
+      btn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Location';
+      btn.disabled = false;
+      return;
+    }
+    
+    // High accuracy GPS options with longer timeout for better accuracy
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 60000,
+      maximumAge: 0
+    };
+    
+    showLocationStatus('Getting your exact location. This may take a moment...', 'info');
+    
+    // Use watchPosition for continuous updates to get the most accurate position
+    const watchId = navigator.geolocation.watchPosition(
+      function(position) {
+        // Clear the watch after getting the first accurate position
+        navigator.geolocation.clearWatch(watchId);
+        
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+        
+        // Store exact GPS coordinates
+        document.getElementById('latitude').value = lat;
+        document.getElementById('longitude').value = lon;
+        document.getElementById('location_accuracy').value = accuracy;
+        
+        console.log(`Exact GPS: ${lat}, ${lon} (±${accuracy}m)`);
+        
+        // Show accuracy information
+        showLocationAccuracy(accuracy);
+        showLocationCoordinates(lat, lon);
+        
+        // Get detailed address
+        getAddressFromCoordinates(lat, lon, btn);
+      },
+      function(error) {
+        // Clear the watch on error
+        navigator.geolocation.clearWatch(watchId);
+        
+        let msg = 'Location error. ';
+        if (error.code === 1) {
+          msg += 'Please allow location access in your browser settings.';
+        } else if (error.code === 2) {
+          msg += 'GPS signal unavailable. Please try again in an open area.';
+        } else {
+          msg += 'Timeout. Please try again.';
+        }
+        
+        showLocationStatus(msg, 'error');
+        btn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Location';
+        btn.disabled = false;
+        
+        // Try IP-based location as fallback
+        setTimeout(() => {
+          getLocationByIP();
+        }, 1000);
+      },
+      options
+    );
+    
+    // Set a timeout to clear the watch if it takes too long
+    setTimeout(() => {
+      navigator.geolocation.clearWatch(watchId);
+    }, 60000);
+  }
+
+  // Function to refine location for better accuracy
+  function refineLocation() {
+    const lat = document.getElementById('latitude').value;
+    const lon = document.getElementById('longitude').value;
+    
+    if (!lat || !lon) {
+      showLocationStatus('Please get your location first.', 'error');
+      return;
+    }
+    
+    showLocationStatus('Refining your location for better accuracy...', 'info');
+    
+    // Use getCurrentPosition again with higher timeout for refinement
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const newLat = position.coords.latitude;
+        const newLon = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+        
+        // Update coordinates if we got a more accurate position
+        if (accuracy < 50) { // If accuracy is better than 50 meters
+          document.getElementById('latitude').value = newLat;
+          document.getElementById('longitude').value = newLon;
+          document.getElementById('location_accuracy').value = accuracy;
+          
+          showLocationStatus('Location refined successfully!', 'success');
+          showLocationAccuracy(accuracy);
+          showLocationCoordinates(newLat, newLon);
+          
+          // Update address if coordinates changed significantly
+          if (Math.abs(newLat - lat) > 0.0001 || Math.abs(newLon - lon) > 0.0001) {
+            getAddressFromCoordinates(newLat, newLon);
+          }
+        } else {
+          showLocationStatus('Location accuracy is already good.', 'info');
+        }
+      },
+      function(error) {
+        showLocationStatus('Could not refine location. Current location is still accurate.', 'info');
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 30000,
+        maximumAge: 0
+      }
+    );
+  }
+
+  // Get address from coordinates using multiple geocoding services
+  async function getAddressFromCoordinates(lat, lon, btn = null) {
+    try {
+      // Try multiple geocoding services for better accuracy
+      const addresses = await Promise.any([
+        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`).then(r => r.json()),
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`).then(r => r.json())
+      ]);
+      
+      let address = '';
+      
+      if (addresses.city || addresses.locality) {
+        address = addresses.city || addresses.locality;
+      }
+      
+      if (addresses.principalSubdivision) {
+        address += (address ? ', ' : '') + addresses.principalSubdivision;
+      } else if (addresses.address && addresses.address.state) {
+        address += (address ? ', ' : '') + addresses.address.state;
+      }
+      
+      if (addresses.address && addresses.address.road) {
+        address = addresses.address.road + (address ? ', ' + address : '');
+      }
+      
+      document.getElementById('location').value = address || `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+      
+      showLocationStatus('Location detected successfully!', 'success');
+      
+      if (btn) {
+        btn.innerHTML = '<i class="fas fa-check"></i> GPS Locked!';
+        btn.style.background = '#28a745';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-crosshairs"></i> Get My Location';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2000);
+      }
+    } catch (error) {
+      // Fallback to coordinates if address lookup fails
+      document.getElementById('location').value = `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+      showLocationStatus('Location detected! Address lookup failed.', 'info');
+      
+      if (btn) {
+        btn.innerHTML = '<i class="fas fa-map-marker-alt"></i> GPS Saved';
+        btn.disabled = false;
+      }
+    }
+  }
+
+  // Fallback location detection using IP address
+  async function getLocationByIP() {
+    try {
+      showLocationStatus('Trying IP-based location detection...', 'info');
+      
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+      
+      if (data.latitude && data.longitude) {
+        document.getElementById('latitude').value = data.latitude;
+        document.getElementById('longitude').value = data.longitude;
+        document.getElementById('location_accuracy').value = 5000; // IP location is less accurate
+        
+        document.getElementById('location').value = `${data.city}, ${data.region}, ${data.country_name}`;
+        
+        showLocationStatus('Approximate location detected using IP.', 'info');
+        showLocationAccuracy(5000);
+        showLocationCoordinates(data.latitude, data.longitude);
+      } else {
+        showLocationStatus('Could not detect location automatically.', 'error');
+      }
+    } catch (error) {
+      showLocationStatus('IP-based location detection failed.', 'error');
+    }
+  }
+
+  // Helper functions for displaying location information
+  function showLocationStatus(message, type) {
+    const statusEl = document.getElementById('locationStatus');
+    statusEl.textContent = message;
+    statusEl.className = `location-status ${type}`;
+    statusEl.style.display = 'block';
+  }
+
+  function showLocationAccuracy(accuracy) {
+    const accuracyEl = document.getElementById('locationAccuracy');
+    
+    if (accuracy < 20) {
+      accuracyEl.textContent = `🎯 High accuracy: Within ${Math.round(accuracy)} meters`;
+      accuracyEl.style.color = '#28a745';
+    } else if (accuracy < 100) {
+      accuracyEl.textContent = `📍 Good accuracy: Within ${Math.round(accuracy)} meters`;
+      accuracyEl.style.color = '#ffc107';
+    } else {
+      accuracyEl.textContent = `📡 Approximate location: Within ${Math.round(accuracy)} meters`;
+      accuracyEl.style.color = '#fd7e14';
+    }
+    
+    accuracyEl.style.display = 'block';
+  }
+
+  function showLocationCoordinates(lat, lon) {
+    const coordsEl = document.getElementById('locationCoordinates');
+    coordsEl.textContent = `Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+    coordsEl.style.display = 'block';
+  }
+
+  function clearLocationStatus() {
+    document.getElementById('locationStatus').style.display = 'none';
+    document.getElementById('locationAccuracy').style.display = 'none';
+    document.getElementById('locationCoordinates').style.display = 'none';
+  }
+</script>
+</body>
+</html>

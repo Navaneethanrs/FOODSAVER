@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Saver - Stop Food Waste</title>
+
+  <!-- Bootstrap + Fonts + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    /* Navbar */
+    nav.navbar {
+      background: linear-gradient(90deg, #ff7f50, #ff6347);
+    }
+    nav .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #fff !important;
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      letter-spacing: 1px;
+    }
+    nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+    nav .nav-link:hover {
+      color: #ffe5d9 !important;
+    }
+
+    /* Carousel */
+    .carousel-item {
+      height: 100vh;
+      min-height: 480px;
+      background: no-repeat center center / cover;
+      position: relative;
+    }
+    .carousel-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .carousel-caption {
+      bottom: 32%;
+      z-index: 10;
+    }
+    .carousel-caption h1 {
+      font-size: clamp(32px, 6vw, 60px);
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+    .carousel-caption p {
+      font-size: clamp(16px, 2.2vw, 22px);
+      margin-bottom: 24px;
+    }
+    .btn-glow {
+      background: #ff7f50;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      box-shadow: 0 0 15px rgba(255,127,80,0.8);
+      transition: 0.3s;
+      border: none;
+    }
+    .btn-glow:hover {
+      background: #ff6347;
+      box-shadow: 0 0 25px rgba(255,99,71,1);
+      transform: scale(1.05);
+    }
+
+    /* Header Section */
+    .header-section {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #fff3e6;
+    }
+    .header-section h2 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ff6347;
+    }
+    .header-section p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* Why Choose Us */
+    .why-section {
+      padding: 70px 20px;
+      background: #fdfdfd;
+      text-align: center;
+    }
+    .why-section h2 {
+      font-weight: 700;
+      color: #ff6347;
+      margin-bottom: 40px;
+    }
+    .why-card {
+      padding: 30px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .why-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+    .why-card i {
+      font-size: 40px;
+      color: #ff6347;
+      margin-bottom: 15px;
+    }
+
+    /* Quotes Section (Enhanced) */
+    .quotes-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #fff0f0, #f9fff2);
+      text-align: center;
+      position: relative;
+    }
+    .quotes-section h2 {
+      color: #ff6347;
+      font-weight: 700;
+      margin-bottom: 40px;
+      font-size: 36px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.15);
+    }
+    .quote-box {
+      position: relative;
+      font-style: italic;
+      font-size: 20px;
+      background: white;
+      padding: 25px 30px;
+      margin: 20px auto;
+      border-radius: 20px;
+      max-width: 800px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+    .quote-box:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15), 0 0 15px rgba(255,99,71,0.4);
+    }
+    .quote-box::before {
+      content: "❝";
+      font-size: 40px;
+      color: #ff6347;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      opacity: 0.2;
+    }
+    .quote-box::after {
+      content: "❞";
+      font-size: 40px;
+      color: #ff6347;
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      opacity: 0.2;
+    }
+
+    /* Donation Section (Enhanced) */
+    .donation-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #dff3ff, #f4fff0);
+    }
+    .donation-card {
+      background: white;
+      border-radius: 25px;
+      padding: 35px 25px;
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+      height: 100%;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .donation-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,99,71,0.1), transparent 70%);
+      transform: rotate(25deg);
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
+    .donation-card:hover::before {
+      opacity: 1;
+    }
+    .donation-card:hover {
+      transform: scale(1.08) translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2),
+                  0 0 25px rgba(255, 127, 80, 0.5);
+    }
+    .donation-card i {
+      font-size: 55px;
+      color: #ff6347;
+      margin-bottom: 20px;
+      transition: transform 0.4s ease, color 0.4s ease;
+    }
+    .donation-card:hover i {
+      transform: scale(1.3) rotate(10deg);
+      color: #ff4500;
+    }
+    .donation-card h4 {
+      color: #007bff;
+      font-weight: bold;
+      margin-bottom: 18px;
+      font-size: 22px;
+      transition: color 0.3s ease;
+    }
+    .donation-card:hover h4 {
+      color: #ff6347;
+    }
+    .donation-card p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #ff7f50, #ff6347);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+    footer .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #ffd700;
+    }
+
+    /* Chatbot Styles */
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .chatbot-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6347, #ff7f50);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255,99,71,0.4);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    .chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(255,99,71,0.6);
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 20px rgba(255,99,71,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(255,99,71,0.8); }
+      100% { box-shadow: 0 4px 20px rgba(255,99,71,0.4); }
+    }
+    .chatbot-window {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 500px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .chatbot-header {
+      background: linear-gradient(135deg, #ff6347, #ff7f50);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chatbot-header h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .message {
+      margin-bottom: 15px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message.bot {
+      text-align: left;
+    }
+    .message.user {
+      text-align: right;
+    }
+    .message-bubble {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 18px;
+      max-width: 80%;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .message.bot .message-bubble {
+      background: white;
+      color: #333;
+      border: 1px solid #e0e0e0;
+    }
+    .message.user .message-bubble {
+      background: linear-gradient(135deg, #ff6347, #ff7f50);
+      color: white;
+    }
+    .chatbot-input {
+      padding: 15px 20px;
+      border-top: 1px solid #e0e0e0;
+      background: white;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .chatbot-input input {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 10px 15px;
+      font-size: 14px;
+      outline: none;
+    }
+    .chatbot-input input:focus {
+      border-color: #ff6347;
+    }
+    .send-btn {
+      background: linear-gradient(135deg, #ff6347, #ff7f50);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .send-btn:hover {
+      transform: scale(1.1);
+    }
+    .typing-indicator {
+      display: none;
+      padding: 10px 16px;
+      background: white;
+      border-radius: 18px;
+      border: 1px solid #e0e0e0;
+      margin-bottom: 15px;
+    }
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+    }
+    .typing-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff6347;
+      animation: typing 1.4s infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+    .quick-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .quick-btn {
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quick-btn:hover {
+      background: #ff6347;
+      color: white;
+      border-color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FOOD SAVER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="how.html">HOW IT WORKS</a></li>
+        <li class="nav-item"><a class="nav-link" href="donate.html">DONATE</a></li>
+        <li class="nav-item"><a class="nav-link" href="registerngo.html">REGISTER NGO</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Carousel -->
+<div id="impactCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="3"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-image:url('img1.jpg');">
+      <div class="carousel-caption">
+        <h1><span style="color:#ffd700;">Help</span> the Homeless</h1>
+        <p>Your donation can become a meal for someone in need.</p>
+        <a href="donate.html" class="btn btn-glow">Donate</a>
+      </div>
+    </div>
+    <div class="carousel-item" style="background-image:url('img2.jpg');">
+      <div class="carousel-caption">
+        <h1>Stop <span style="color:#ff4d6d;">Food Wastage</span></h1>
+        <p>Redirect surplus food to people instead of landfills.</p>
+        <a href="donate.html" class="btn btn-glow">Donate</a>
+      </div>
+    </div>
+    <div class="carousel-item" style="background-image:url('img 3.jpg');">
+      <div class="carousel-caption">
+        <h1>Together We <span style="color:#00ff88;">Serve</span></h1>
+        <p>Join the network connecting food donors with NGOs.</p>
+        <a href="donate.html" class="btn btn-glow">Donate</a>
+      </div>
+    </div>
+    <div class="carousel-item" style="background-image:url('img4.jpg');">
+      <div class="carousel-caption">
+        <h1>Every Meal <span style="color:#ffd700;">Matters</span></h1>
+        <p>Turn your extra food into hope for families.</p>
+        <a href="donate.html" class="btn btn-glow">Donate</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#impactCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#impactCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Our Mission -->
+<section id="about" class="header-section" data-aos="fade-up">
+  <h2>Our Mission</h2>
+  <p>Food Saver connects surplus food from restaurants, events, and individuals to those who need it most—especially the homeless and vulnerable communities. Together, we can fight hunger and reduce waste by making every meal count.</p>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-section">
+  <div class="container">
+    <h2 data-aos="fade-up">Why Choose Food Saver?</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="zoom-in">
+        <div class="why-card">
+          <i class="fas fa-seedling"></i>
+          <h5>Sustainability</h5>
+          <p>We reduce food waste and promote eco-friendly practices that benefit our planet.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="why-card">
+          <i class="fas fa-users"></i>
+          <h5>Community Impact</h5>
+          <p>Every contribution creates ripples of change in local communities and beyond.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="why-card">
+          <i class="fas fa-heart"></i>
+          <h5>Compassion</h5>
+          <p>We believe no meal should go to waste when so many are hungry.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quotes Section -->
+<section class="quotes-section">
+  <div class="container">
+    <h2 data-aos="fade-up">Inspiring Words</h2>
+    <div class="quote-box" data-aos="fade-right">“If you can’t feed a hundred people, then feed just one.” – Mother Teresa</div>
+    <div class="quote-box" data-aos="fade-left">“The food you waste could be the meal someone prays for tonight.”</div>
+    <div class="quote-box" data-aos="fade-right">“Every meal shared is a story of hope.”</div>
+  </div>
+</section>
+
+<!-- Donation Section -->
+<section class="donation-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="flip-left">
+        <div class="donation-card">
+          <i class="fas fa-hands-helping"></i>
+          <h4>MONTHLY DONATION</h4>
+          <p>For as little as $3 a month you can join our Sustainer's Circle. This helps Food Saver plan ahead and accomplish even more.</p>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="flip-right">
+        <div class="donation-card">
+          <i class="fas fa-briefcase-dollar"></i>
+          <h4>LIVING LEGACY</h4>
+          <p>With a legacy donation you can make a much larger donation than you could afford to give during your lifetime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="social-icons mb-3">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>© 2025 Food Saver | All Rights Reserved</p>
+    <p>Your trusted partner in reducing food waste and fighting hunger.</p>
+  </div>
+</footer>
+
+<!-- Chatbot -->
+<div class="chatbot-container">
+  <button class="chatbot-toggle" onclick="toggleChat()">
+    <i class="fas fa-comments"></i>
+  </button>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <h4><i class="fas fa-robot"></i> Food Saver Assistant</h4>
+      <button class="chatbot-close" onclick="toggleChat()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-bubble">
+          🍽️ Hi! I'm your Food Saver assistant. I can help you with:<br><br>
+          • How to donate food<br>
+          • NGO registration<br>
+          • How our system works<br>
+          • Our mission & values<br><br>
+          What would you like to know?
+        </div>
+        <div class="quick-buttons">
+          <button class="quick-btn" onclick="askQuestion('How to donate?')">How to donate?</button>
+          <button class="quick-btn" onclick="askQuestion('Register NGO')">Register NGO</button>
+          <button class="quick-btn" onclick="askQuestion('How it works?')">How it works?</button>
+          <button class="quick-btn" onclick="askQuestion('Contact info')">Contact info</button>
+        </div>
+      </div>
+    </div>
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <div class="input-group">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="bell_notification.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+  
+
+
+  // Chatbot functionality
+  const chatResponses = {
+    'hello': '🍽️ Hello! Welcome to Food Saver! I\'m here to help you learn about our food donation system. How can I assist you today?',
+    'what is food saver': '🌟 Food Saver is a complete food donation system that connects donors with registered NGOs through automatic notifications. We help redirect surplus food from restaurants, events, and individuals to homeless and vulnerable communities, fighting hunger while reducing food waste!',
+    'how does it work': '📋 Here\'s how Food Saver works:\n\n1️⃣ **Donors** fill out our donation form with food details, location, and pickup time\n2️⃣ **Automatic notifications** are sent to registered NGOs in your area\n3️⃣ **NGOs collect** the food and distribute it to people in need\n4️⃣ **Lives are changed** - surplus food becomes meals for families!\n\nIt\'s that simple! Visit our "How It Works" page for more details.',
+    'how to donate': '🤝 **To donate food:**\n\n• Click the "DONATE" button on our homepage\n• Fill out the donation form with:\n  - Type and quantity of food\n  - Your location and contact info\n  - Preferred pickup time\n• Submit the form\n• We\'ll notify nearby NGOs automatically!\n\nYour surplus food will help feed someone in need. Every meal matters! 🍽️',
+    'register ngo': '🏢 **NGO Registration Process:**\n\n• Visit our "REGISTER NGO" page\n• Provide your organization details:\n  - NGO name and contact person\n  - Phone number and email\n  - Full address and operating hours\n• Submit the registration form\n• Once approved, you\'ll receive automatic notifications about food donations in your area!\n\nJoin our network of NGOs making a difference! 💪',
+    'contact': '📞 **Contact Information:**\n\n• Visit our **Contact page** for the contact form\n• We\'re here to help with:\n  - Donation questions\n  - NGO registration support\n  - Technical assistance\n  - General inquiries\n\nOur team is ready to assist you in making a difference! 🌟',
+    'mission': '🎯 **Our Mission:**\n\nFood Saver connects surplus food from restaurants, events, and individuals to those who need it most—especially homeless and vulnerable communities. We fight hunger and reduce waste by making every meal count.\n\n**Our Values:**\n🌱 **Sustainability** - Reducing food waste\n👥 **Community Impact** - Creating positive change\n❤️ **Compassion** - No meal should go to waste when people are hungry',
+    'help': '🤖 **I can help you with:**\n\n🍽️ How to donate food\n🏢 NGO registration process\n⚙️ How our system works\n🎯 Our mission and values\n📞 Contact information\n🌟 Why choose Food Saver\n\n**Just ask me anything!** I\'m here to guide you through our food donation system.',
+    'thanks': '😊 You\'re very welcome! I\'m glad I could help. Is there anything else you\'d like to know about Food Saver? I\'m here whenever you need assistance!',
+    'default': '🤔 I\'d be happy to help! Here are some things you can ask me about:\n\n• **"How to donate food"** - Learn the donation process\n• **"Register NGO"** - NGO registration steps\n• **"How does it work"** - Our system process\n• **"Mission"** - Our purpose and values\n• **"Contact"** - How to reach us\n\nWhat would you like to know? 😊'
+  };
+
+  function toggleChat() {
+    const chatWindow = document.getElementById('chatbotWindow');
+    const isVisible = chatWindow.style.display === 'flex';
+    chatWindow.style.display = isVisible ? 'none' : 'flex';
+    
+    if (!isVisible) {
+      document.getElementById('chatInput').focus();
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (message) {
+      addMessage(message, 'user');
+      input.value = '';
+      
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        const response = getBotResponse(message);
+        addMessage(response, 'bot');
+      }, 1000);
+    }
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  }
+
+  function addMessage(text, sender) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function showTyping() {
+    document.getElementById('typingIndicator').style.display = 'block';
+    const messagesContainer = document.getElementById('chatMessages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function hideTyping() {
+    document.getElementById('typingIndicator').style.display = 'none';
+  }
+
+  function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // Check for greetings
+    if (lowerMessage.match(/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/)) {
+      return chatResponses['hello'];
+    }
+    
+    // Check for what is food saver
+    if (lowerMessage.match(/\b(what is|about|tell me about)\b.*\b(food saver|foodsaver)\b/)) {
+      return chatResponses['what is food saver'];
+    }
+    
+    // Check for how it works
+    if (lowerMessage.match(/\b(how does|how it|how do|process|work)\b/)) {
+      return chatResponses['how does it work'];
+    }
+    
+    // Check for donation questions
+    if (lowerMessage.match(/\b(donate|donation|give food|surplus food)\b/)) {
+      return chatResponses['how to donate'];
+    }
+    
+    // Check for NGO registration
+    if (lowerMessage.match(/\b(register|registration|ngo|organization)\b/)) {
+      return chatResponses['register ngo'];
+    }
+    
+    // Check for contact
+    if (lowerMessage.match(/\b(contact|phone|email|reach|call)\b/)) {
+      return chatResponses['contact'];
+    }
+    
+    // Check for mission
+    if (lowerMessage.match(/\b(mission|purpose|goal|why)\b/)) {
+      return chatResponses['mission'];
+    }
+    
+    // Check for help
+    if (lowerMessage.match(/\b(help|assist|support|guide)\b/)) {
+      return chatResponses['help'];
+    }
+    
+    // Check for thanks
+    if (lowerMessage.match(/\b(thank|thanks|appreciate)\b/)) {
+      return chatResponses['thanks'];
+    }
+    
+    return chatResponses['default'];
+  }
+  
+  function askQuestion(question) {
+    document.getElementById('chatInput').value = question;
+    sendMessage();
+  }
+</script>
+</body>
+</html>
